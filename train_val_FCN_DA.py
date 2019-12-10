@@ -75,8 +75,8 @@ def layout_loss_hard(y_true,y_pred):
     y_pred_softmax=K.softmax(y_pred,axis=1)
     
     max_pred_softmax=K.max(y_pred_softmax,axis=1,keepdims=True)
-    bin_pred_softmax_a=y_pred_softmax/max_pred_softmax
-    bin_pred_softmax=bin_pred_softmax_a**5.
+    bin_pred_softmax_a=y_pred_softmax/max_pred_softmax  # normalized
+    bin_pred_softmax=bin_pred_softmax_a**5.  # ** squared
     
     final_pred=K.mean(bin_pred_softmax,axis=[2,3])
     final_pred=final_pred/(K.sum(final_pred,axis=1,keepdims=True)+K.epsilon())
